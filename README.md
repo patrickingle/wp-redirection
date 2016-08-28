@@ -1,10 +1,10 @@
 # WP-Redirection
 The official development branch for the wordpress plugin located at https://wordpress.org/plugins/wp-redirection
 
-Contributors: pingle
+Contributors: phkcorp2005
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9674139
 Tags: redirection
-Tested up to: 3.1
+Tested up to: 4.6
 Stable tag: 1.0.0
 Requires at least: 3.0
 
@@ -29,6 +29,9 @@ Please do not be afraid of asking questions?<br>
 (There are no stupid or dumb questions!)
 
 # Changelog 
+= 1.0.1 =
+* WP 4.6
+* Change contributor ownership
 
 = 1.0.0 =
 * Plugin created
