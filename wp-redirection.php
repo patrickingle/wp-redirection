@@ -34,16 +34,6 @@ function displayWPRedirectionManagementPage()
 
 	if (is_admin())
 	{
-		$query = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix."wp_redirection (
-			  id int(11) NOT NULL AUTO_INCREMENT,
-			  host varchar(255) NOT NULL,
-			  path varchar(255) NOT NULL,
-			  new_host varchar(255) NOT NULL,
-			  map varchar(255) NOT NULL,
-			  code varchar(255) NOT NULL,
-			  PRIMARY KEY (id)
-				)";
-		$wpdb->query($query);
 
 
 		if (isset($_POST["op"]))
@@ -62,7 +52,7 @@ function displayWPRedirectionManagementPage()
 
 						if ($brd_map != "" && $brd_new_host != "" && $brd_code != "")
 						{
-							$query = "INSERT INTO ".$wpdb->prefix."wp_redirection (host,path,new_host,map,code) VALUES ('".$url['host']."','".$brd_path."','$brd_new_host','$brd_map','$brd_code')";
+							$query = "INSERT INTO ".$wpdb->prefix."redirection (host,path,new_host,map,code) VALUES ('".$url['host']."','".$brd_path."','$brd_new_host','$brd_map','$brd_code')";
 							$wpdb->query($query);
 							echo "<div class='updated fade'><p>WP-Redirection parameters saved.</p></div>";
 						}
@@ -91,7 +81,7 @@ function displayWPRedirectionManagementPage()
 						{
 							if ($bucket[$i] != "")
 							{
-								$query = "UPDATE ".$wpdb->prefix."wp_redirection SET host='$host[$i]',path='$path[$i]',new_host='$new_host[$i]',map='$bucket[$i]',code='$code[$i]' WHERE id='$id'";
+								$query = "UPDATE ".$wpdb->prefix."redirection SET host='$host[$i]',path='$path[$i]',new_host='$new_host[$i]',map='$bucket[$i]',code='$code[$i]' WHERE id='$id'";
 							}
 							else
 							{
@@ -109,7 +99,7 @@ function displayWPRedirectionManagementPage()
 					$code = $_POST["code"][0];
 					if ($bucket != "")
 					{
-						$query = "UPDATE ".$wpdb->prefix."wp_redirection SET host='$host',path='$path',new_host='$new_host',map='$bucket',code='$code' WHERE id='$id'";
+						$query = "UPDATE ".$wpdb->prefix."redirection SET host='$host',path='$path',new_host='$new_host',map='$bucket',code='$code' WHERE id='$id'";
 					}
 					else
 					{
@@ -129,14 +119,14 @@ function displayWPRedirectionManagementPage()
 			else if ($_POST["op"] == "delete")
 			{
 				$id = $_POST["id"];
-				$query = "DELETE FROM ".$wpdb->prefix."wp_redirection WHERE id='$id'";
+				$query = "DELETE FROM ".$wpdb->prefix."redirection WHERE id='$id'";
 				$wpdb->query($query);
 				echo "<div class='updated fade'><p>WP-Redirection parameter successfully deleted.</p></div>";
 			}
 		}
 
 
-		$t = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."wp_redirection");
+		$t = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."redirection");
 ?>
 		<script type="text/javascript">
 			function editItem()
@@ -523,7 +513,7 @@ function phkcorp_redirect()
 		/*
 		 * Find records ONLY which match the incoming host and the original host?
 		 */
-		$query = "SELECT * FROM ".$wpdb->prefix."wp_redirection WHERE host='".$url['host']."'";
+		$query = "SELECT * FROM ".$wpdb->prefix."redirection WHERE host='".$url['host']."'";
 		$results = $wpdb->get_results($query);
 
 		if ($wpdb->num_rows > 0)
@@ -600,7 +590,7 @@ function phkcorp_redirect()
 			}
 			else
 			{
-				$query = "SELECT * FROM ".$wpdb->prefix."wp_redirection WHERE host='regex'";
+				$query = "SELECT * FROM ".$wpdb->prefix."redirection WHERE host='regex'";
 				$results = $wpdb->get_results($query);
 
 				$match_found = 0;
@@ -635,7 +625,7 @@ function phkcorp_redirect()
 		}
 		else
 		{
-			$query = "SELECT * FROM ".$wpdb->prefix."wp_redirection WHERE host='regex'";
+			$query = "SELECT * FROM ".$wpdb->prefix."redirection WHERE host='regex'";
 			$results = $wpdb->get_results($query);
 
 			$match_found = 0;
@@ -673,7 +663,40 @@ function phkcorp_redirect()
 //
 // Hooks
 //
-
 add_action('admin_menu', 'addWPRedirectionManagementPage');
 add_action('init','phkcorp_redirect');
+
+
+function wp_redirection_activate() {
+    global $wpdb;
+    
+    $sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix."redirection (
+              id int(11) NOT NULL AUTO_INCREMENT,
+              host varchar(255) NOT NULL,
+              path varchar(255) NOT NULL,
+              new_host varchar(255) NOT NULL,
+              map varchar(255) NOT NULL,
+              code varchar(255) NOT NULL,
+              PRIMARY KEY (id)
+                    )";
+    $wpdb->query($sql);
+
+    
+}
+
+function wp_redirection_deactivate() {
+    global $wpdb;
+    
+    if (get_option('wp_redirection_delete')) {
+        $sql = 'DROP TABLE '.$wpdb->prefix.'redirection;';
+        $wpdb->query($sql);
+    }
+    $sql = 'DROP TABLE IF EXISTS '.$wpdb->prefix.'wp_redirection;';
+    $wpdb->query($sql);
+    
+    remove_action('init','phkcorp_redirect');
+}
+register_activation_hook(__FILE__, 'wp_redirection_activate');
+register_deactivation_hook(__FILE__, 'wp_redirection_deactivate');
+
 ?>
