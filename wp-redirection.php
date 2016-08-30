@@ -4,7 +4,7 @@ Plugin Name: WP-Redirection
 Plugin URI: http://phkcorp.com?do=wordpress
 Description: A Wordpress plugin for redirecting/rewriting url's to a new host url. Does handle multi-site hostings.
 Author: PHK Corporation
-Version: 1.0.1
+Version: 1.0.2
 Author URI: http://phkcorp.com
 
 Copyright 2011  PHK Corporation  (email : phkcorp2005@gmail.com)

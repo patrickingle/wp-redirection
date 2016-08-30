@@ -27,6 +27,9 @@ Please do not be afraid of asking questions?<br>
 (There are no stupid or dumb questions!)
 
 == Changelog ==
+= 1.0.2 =
+* Fixed issue where redirection stills occur after deactivating plugin
+
 = 1.0.1 =
 * WP 4.6
 * Change contributor ownership
