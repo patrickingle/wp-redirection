@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: WP-Redirection
-Plugin URI: http://phkcorp.com?do=wordpress
+Plugin URI: https://wordpress.org/plugins/wp-redirection
 Description: A Wordpress plugin for redirecting/rewriting url's to a new host url. Does handle multi-site hostings.
-Author: PHK Corporation
+Author: PressPage Entertainment Inc.
 Version: 1.0.2
-Author URI: http://phkcorp.com
+Author URI: https://presspage.info
 
-Copyright 2011  PHK Corporation  (email : phkcorp2005@gmail.com)
+Copyright 2011-2018  PressPage Entertainment Inc.  (email: presspage.entertainment@gmail.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -225,7 +225,7 @@ function displayWPRedirectionManagementPage()
 								Original Host:
 							</th>
 							<td>
-								<input type='text' size='30' maxlength='80' name='brd_host' id='brd_host' value='' />&nbsp;<i><small>The original host with protocol (e.g. http://www.phkcorp.com or http://regex)</small></i>
+								<input type='text' size='30' maxlength='80' name='brd_host' id='brd_host' value='' />&nbsp;<i><small>The original host with protocol (e.g. https://presspage.info or http://regex)</small></i>
 							</td>
 						</tr>
 						<tr>
@@ -241,7 +241,7 @@ function displayWPRedirectionManagementPage()
 								New Host:
 							</th>
 							<td>
-								<input type='text' size='30' maxlength='80' name='brd_new_host' id='brd_new_host' value='' />&nbsp;<i><small>The new host to redirect w/o protocol (e.g. www.phkcorp.com)</small></i>
+								<input type='text' size='30' maxlength='80' name='brd_new_host' id='brd_new_host' value='' />&nbsp;<i><small>The new host to redirect w/o protocol (e.g. presspage.info)</small></i>
 							</td>
 						</tr>
 						<tr>
