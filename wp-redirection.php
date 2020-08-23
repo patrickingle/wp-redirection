@@ -4,7 +4,7 @@ Plugin Name: WP-Redirection
 Plugin URI: https://wordpress.org/plugins/wp-redirection
 Description: A Wordpress plugin for redirecting/rewriting url's to a new host url. Does handle multi-site hostings.
 Author: PressPage Entertainment Inc.
-Version: 1.0.2
+Version: 1.0.3
 Author URI: https://presspage.info
 
 Copyright 2011-2018  PressPage Entertainment Inc.  (email: presspage.entertainment@gmail.com)
@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 function addWPRedirectionManagementPage()
 {
-	add_options_page('WP-Redirection','WP-Redirection',8,'wp-redirection','displayWPRedirectionManagementPage');
+	add_options_page('WP-Redirection','WP-Redirection','administrator','wp-redirection','displayWPRedirectionManagementPage');
 }
 
 function displayWPRedirectionManagementPage()

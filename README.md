@@ -4,8 +4,8 @@ The official development branch for the wordpress plugin located at https://word
 Contributors: phkcorp2005
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9674139
 Tags: redirection
-Tested up to: 4.6
-Stable tag: 1.0.0
+Tested up to: 5.5
+Stable tag: 1.0.3
 Requires at least: 3.0
 
 An alternative to setup redirection without modifying the htaccess file
@@ -29,6 +29,9 @@ Please do not be afraid of asking questions?<br>
 (There are no stupid or dumb questions!)
 
 # Changelog 
+= 1.0.3 =
+* Fixed add_options_page capability resulting in has_cap deprecated error
+
 = 1.0.2 =
 * Fixed issue where redirection stills occur after deactivating plugin
 
